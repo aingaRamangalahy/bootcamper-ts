@@ -3,6 +3,8 @@ import * as path from "path";
 import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
 import * as dotenv from "dotenv";
+import BootcampRoute from "./routes/bootcamps.route";
+import UserRoute from "./routes/users.route";
 
 class Server {
   public app: express.Application;
@@ -10,7 +12,7 @@ class Server {
   constructor() {
     // load env
     dotenv.config({ path: path.resolve(process.cwd(), ".env") });
-    
+
     this.app = express();
     this.mongodb();
     this.config();
@@ -41,7 +43,10 @@ class Server {
     mongoose.pluralize(null);
   }
 
-  public routes() {}
+  public routes() {
+      this.app.use("/api/bootcamps", BootcampRoute)
+      this.app.use("/api/users", UserRoute)
+  }
 }
 
 export default new Server();

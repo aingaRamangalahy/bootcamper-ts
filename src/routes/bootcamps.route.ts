@@ -10,7 +10,7 @@ class BootcampRouter {
   }
 
   routes() {
-    this.router.get("*", BootcampController.getBootcamp);
+    this.router.get("/", BootcampController.getBootcamps);
   }
 }
 
